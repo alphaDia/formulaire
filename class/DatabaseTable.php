@@ -13,7 +13,7 @@
         }
 
         public function insertItems($fields){
-            unset($fields['id']);
+            $this->primarykey = null;
             $sql = 'INSERT INTO ijbd SET ';
             foreach ($fields as $key => $field) {
                 if($field instanceof DateTime){
@@ -36,7 +36,7 @@
         }
 
         public function findByid($value){
-        $sql = "SELECT * FROM  $this->table WHERE $this->primarykey = :id";
+            $sql = "SELECT * FROM  $this->table WHERE $this->primarykey = :id";
             $bind = ['id'=>$value];
             $pdostm = $this->query($sql,$bind);
             return $pdostm->fetch();
@@ -54,20 +54,19 @@
             return $pdostm;
         }
 
-        public function alljokkes(){
-            $sql = "SELECT ijbd.id ,jokeText,jokeDate, name , email FROM 'ijbd'
-            INNER JOIN 'author' ON authorID = author.id";
+        public function alljokes(){
+            $sql = "SELECT ijbd.id ,jokeText,jokeDate, name , email FROM $this->table
+            INNER JOIN author ON authorID = author.id";
             return $this->query($sql);
         }
 
         public function save($record){
-            if($record[$primarykey] == ''){
-                $record[$primarykey] = null;
-                $this->insertItems($record);
-            }else{
+            if($record['id'] != ''){
                 unset( $record['authorID']);
                 unset( $record['jokeDate']);    
-               $this->update($record);
+                $this->update($record);
+            }else{
+                $this->insertItems($record);
             }
         }
 
@@ -91,6 +90,13 @@
             }
             $sql = rtrim($sql,',');
             $this->query($sql,$fields);
+        }
+
+        public function total(){
+            $sql = "SELECT count(*) FROM $this->table";
+            $pdostm =  $this->query($sql);
+            $row = $pdostm->fetch();
+            return $row[0];
         }
 
     }

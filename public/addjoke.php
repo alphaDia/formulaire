@@ -8,11 +8,11 @@
         $output = ob_get_clean();
     }else{
         try{
-            include  __DIR__.'/include/db.conection.php';
-            include __DIR__.'/class/DatabaseTable.php';
+            include  __DIR__.'/../include/db.conection.php';
+            include __DIR__.'/../class/DatabaseTable.php';
 
             $jokeTable = new DatabaseTable($pdo,'ijdb','id');
-            $authorTable = new DatabaseTable($pdo,'author','id');
+            //$authorTable = new DatabaseTable($pdo,'author','id');
 
     
             //$sql = 'UPDATE diallo SET jokeDate ="'.date('Y-m-d').'"  WHERE id = "%chicken%" ';

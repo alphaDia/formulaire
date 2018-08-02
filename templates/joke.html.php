@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ijdb Internet Joke Database</title>
+    <title><?= $titre; ?></title>
 </head>
 <style>
     blockquote {display: table; margin-bottom: 1em;
@@ -24,14 +24,14 @@
         <?php foreach ($pdostm as $joke) :?>
             <blockquote>
                 <p>
-                    <?$date =new DateTime($joke['jokeDate'])?>
+                    <?$date = new DateTime($joke['jokeDate'])?>
                     <?= htmlspecialchars($joke['name'],ENT_QUOTES,'UTF-8') ?><?= ' '. $date->format('m-d-Y');?><br />
                     <?= htmlspecialchars($joke['jokeText'],ENT_QUOTES,'UTF-8'); ?>
-                    <form action="deletejoke.php" method="post">
+                    <form action="../public/deletejoke.php" method="post">
                         <input type="hidden" name="id" id="id" value=<?= $joke['id']?> >
                         <input type="submit" name='delete' value="DELETE">
                     </form>
-                    <form action="save.php" method="post">
+                    <form action="" method="post">
                         <input type="hidden" name="id" id="id" value='<?= $joke['id'] ?? '';?>' >
                         <input type="submit" name="edits" value="EDIT">
                     </form>
@@ -41,9 +41,6 @@
 
         <?php endforeach; ?>
 
-    <?php endif; ?>
-   
-
-   
+    <?php endif; ?>   
 </body>
 </html>

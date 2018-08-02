@@ -12,7 +12,7 @@
         <h1>welcome to internet database jokes</h1>
     </header>
 
-    <nav>
+    <nav>   
         <ul>
             <li><a href="index.php">Home</a></li>
             <li><a href="joke.php">Jokes list</a></li>
