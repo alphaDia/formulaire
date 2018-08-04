@@ -31,7 +31,7 @@
                         <input type="hidden" name="id" id="id" value=<?= $joke['id']?> >
                         <input type="submit" name='delete' value="DELETE">
                     </form>
-                    <form action="" method="post">
+                    <form action="../public/save.php" method="post">
                         <input type="hidden" name="id" id="id" value='<?= $joke['id'] ?? '';?>' >
                         <input type="submit" name="edits" value="EDIT">
                     </form>

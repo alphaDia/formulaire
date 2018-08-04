@@ -7,12 +7,16 @@
 
         if(isset($_POST['update']) ){
             $record = $_POST['joke'];
+            if($record['id'] == ''){
 
-            $record['jokeDate'] = new DateTime();
+                $record['jokeDate'] = new DateTime();
+                $record['authorID'] = 1;
+                $jokeTable->save($record);
 
-            $record['authorID'] = 1;
+            }else{
 
-            $jokeTable->save($record);
+                $jokeTable->save($record);
+            }
 
             header('location: joke.php');
         }
@@ -49,5 +53,4 @@
     }
 
   include '../templates/layout.html.php';
-    
-
+?>

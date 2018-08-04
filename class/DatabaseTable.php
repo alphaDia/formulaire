@@ -62,8 +62,6 @@
 
         public function save($record){
             if($record['id'] != ''){
-                unset( $record['authorID']);
-                unset( $record['jokeDate']);    
                 $this->update($record);
             }else{
                 $this->insertItems($record);

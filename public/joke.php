@@ -6,7 +6,6 @@
 
         $jokeTable = new DatabaseTable($pdo,'ijbd','id');
         $authorTable = new DatabaseTable($pdo,'author','id');
-        echo 'salut';
 
         /*$thejokes = $jokeTable->findAll();
 
